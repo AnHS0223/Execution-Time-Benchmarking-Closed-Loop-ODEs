@@ -30,6 +30,7 @@ if args.use_x64:
     os.environ['JAX_ENABLE_X64'] = 'True'
 
 import jax                                          # noqa: E402
+jax.config.update("jax_platforms", "cpu")
 import jax.numpy as jnp                             # noqa: E402
 from jax.example_libraries import optimizers        # noqa: E402
 from dynamics import prior, plant, disturbance      # noqa: E402
