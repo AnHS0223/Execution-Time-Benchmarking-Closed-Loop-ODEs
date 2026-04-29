@@ -3,4 +3,3 @@ venv/
 __pycache__/
 *.pyc
 .ipynb_checkpoints/
-# 데이터셋 폴더가 있다면 추가 (예: data/)

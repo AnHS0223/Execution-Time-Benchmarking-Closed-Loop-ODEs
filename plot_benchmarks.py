@@ -4,31 +4,31 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 def main():
-    # 비교할 플랫폼 리스트
+    # platform list
     platforms = ['CPU', 'GPU', 'TPU']
     
-    # 각 플랫폼별 pkl 파일이 들어있는 디렉토리 경로 (본인 환경에 맞게 폴더명을 수정하세요)
+    # directory mapping for each platform
     directories = {
         'CPU': 'train_results_cpu',
         'GPU': 'train_results_gpu',
         'TPU': 'train_results_tpu'
     }
 
-    # 시뮬레이션 종류와 pkl 파일 prefix
+    # simulation name and corresponding pkl filename prefix
     simulations = {
         'Rotorcraft': 'pid',
         'Two-Cart': 'twocart_pid',
         'Inv. Pendulum': 'invpend_pid'
     }
 
-    seeds = list(range(20))
-    M = 10
+    seeds = list(range(5))
+    M = 50
 
-    # 데이터 저장소 초기화
+    # initialize data structures to hold training and compile times
     train_times = {sim: {plat: [] for plat in platforms} for sim in simulations}
     compile_times = {sim: {plat: [] for plat in platforms} for sim in simulations}
 
-    # pkl 파일 순회 및 데이터 수집
+    # data loading
     for plat in platforms:
         base_dir = directories[plat]
         for sim_name, prefix in simulations.items():
@@ -38,15 +38,15 @@ def main():
                     with open(pkl_path, 'rb') as f:
                         data = pickle.load(f)
                     
-                    # pkl 내부에 저장된 시간 정보 추출
+                    # time data extraction(if keys exist, otherwise default to 0.0)
                     train_times[sim_name][plat].append(data.get('training_time', 0.0))
                     compile_times[sim_name][plat].append(data.get('compile_time', 0.0))
                 else:
-                    pass # 파일이 없는 경우는 건너뜀
+                    pass # file not found, skip
 
-    # ====== 1. Training Time 막대 그래프 그리기 ======
+    # ====== 1. Training Time ======
     x = np.arange(len(simulations))
-    width = 0.25 # 막대 두께
+    width = 0.25
 
     fig, ax = plt.subplots(figsize=(10, 6))
     
@@ -62,7 +62,6 @@ def main():
                 means.append(0)
                 stds.append(0)
         
-        # 막대 위치 조정 (나란히 배치)
         offset = (i - 1) * width
         ax.bar(x + offset, means, width, yerr=stds, label=plat, align='center', capsize=5, alpha=0.8)
 
@@ -79,7 +78,7 @@ def main():
     print(f"Training Time plot saved to '{train_plot_path}'")
     plt.close()
 
-    # ====== 2. Compile Time 막대 그래프 그리기 ======
+    # ====== 2. Compile Time ======
     fig, ax = plt.subplots(figsize=(10, 6))
     
     for i, plat in enumerate(platforms):
