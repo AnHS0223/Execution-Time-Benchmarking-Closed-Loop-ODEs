@@ -51,6 +51,8 @@ The training scripts `train_pid.py`, `train_pid_invpend.py`, `train_pid_twocart.
 
 We test two configuration : (seed range 20, M 10), (seed range 5, M 50)
 
+To ensure a fair comparison, we utilized a TPU v5e-1, an NVIDIA L4, and an AMD EPYC 48-core CPU. Both the v5e-1 and L4 target energy-efficient workloads and were released concurrently in 2023.
+
 ![M=10 training time](benchmark_training_time_M10.png)
 
 For the case (seed range: 20, M: 10), training on a GPU shows a higher execution time, taking approximately 2 to 3 times longer than on a TPU. Furthermore, the computational cost of solving ODEs on a TPU is 1.5 to 2 times higher than on a CPU.
