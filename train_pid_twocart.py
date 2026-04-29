@@ -24,7 +24,7 @@ if args.use_x64:
     os.environ['JAX_ENABLE_X64'] = 'True'
 
 import jax                                          # noqa: E402
-jax.config.update("jax_platforms", "cpu")
+# jax.config.update("jax_platforms", "cpu") # use CPU for benchmarking (optional)
 import jax.numpy as jnp                             # noqa: E402
 from jax.example_libraries import optimizers        # noqa: E402
 from dynamics_twocart import plant, disturbance     # noqa: E402

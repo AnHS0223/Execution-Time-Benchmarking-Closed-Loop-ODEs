@@ -23,7 +23,7 @@ def main():
             
             start_time = time.time()
             
-            cmd = ["python", script, str(seed), str(M_WIND)]
+            cmd = ["python3", script, str(seed), str(M_WIND)]
             
             subprocess.run(cmd, check=True)
             
