@@ -8,7 +8,7 @@ SCRIPTS = [
     'train_pid_invpend.py'
 ]
 
-SEEDS = list(range(10))
+SEEDS = list(range(5))
 M_WIND = 50
 
 def main():
