@@ -67,3 +67,7 @@ In conclusion, TPUs generally exhibit superior performance compared to GPUs when
 ## Reference
 
 This codes are based on `https://github.com/StanfordASL/Adaptive-Control-Oriented-Meta-Learning.git`
+
+## Acknowledgements
+
+Thanks to the Google TPU Sprint program for providing the GCP credits.
