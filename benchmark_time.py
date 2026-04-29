@@ -8,8 +8,8 @@ SCRIPTS = [
     'train_pid_invpend.py'
 ]
 
-SEEDS = list(range(20))
-M_WIND = 10
+SEEDS = list(range(10))
+M_WIND = 50
 
 def main():
     print("=== starting benchmark ===")
@@ -23,7 +23,7 @@ def main():
             
             start_time = time.time()
             
-            cmd = ["python3", script, str(seed), str(M_WIND)]
+            cmd = ["python", script, str(seed), str(M_WIND)]
             
             subprocess.run(cmd, check=True)
             

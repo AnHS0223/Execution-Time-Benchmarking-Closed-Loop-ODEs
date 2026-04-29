@@ -22,7 +22,7 @@ def main():
     }
 
     seeds = list(range(20))
-    M = 5
+    M = 10
 
     # 데이터 저장소 초기화
     train_times = {sim: {plat: [] for plat in platforms} for sim in simulations}
